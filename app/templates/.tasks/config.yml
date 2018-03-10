@@ -1,0 +1,12 @@
+package:
+  name: <%= name %>
+github:
+  username: <%= github.username %>
+  repository: <%= github.repository %>
+workInProgress: true
+credits: []
+copyright:
+  year: <%= year %>
+  author: <%= author.name %>
+  url: <%= author.url %>
+example:
