@@ -65,6 +65,7 @@ setup(name='%s' % (pkg_name),
       packages=[os.path.join('src', p) for p in find_packages('src')],
       zip_safe=False,
       install_requires=requires,
+      include_package_data=True,
       python_requires=', '.join((
           '>=3.5',
           '!=3.0.*',
