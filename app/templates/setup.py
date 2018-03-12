@@ -15,24 +15,12 @@ import pip
 import os, sys
 from setuptools import setup, find_packages
 
-sys.path.insert(0, os.path.abspath('src'))
+sys.path.insert(0, os.path.dirname(__file__))
 
-from <%= name %> import __version__ as pkg_version
-from <%= name %> import __package__ as pkg_package
-from <%= name %> import __name__ as pkg_name
-from <%= name %> import __copyright__ as pkg_copyright
-from <%= name %> import __author__ as pkg_author
-from <%= name %> import __email__ as pkg_email
-from <%= name %> import __license__ as pkg_license
-from <%= name %> import __status__ as pkg_status
-from <%= name %> import __description__ as pkg_description
+from pygalle_package import CONFIGURATION
 
 links = []
 requires = []
-
-requirements = pip.req.parse_requirements('requirements.txt', session=pip.download.PipSession())
-
-download_url = 'https://github.com/<%= github.username %>/<%= github.repository %>/archive/v%s.tar.gz' % pkg_version
 
 try:
     import pypandoc
@@ -45,6 +33,10 @@ except OSError:
     with io.open('README.md', encoding="utf-8") as f:
         long_description = f.read()
 
+requirements = pip.req.parse_requirements(os.path.join(os.path.dirname(__file__), 'requirements.txt'), session=pip.download.PipSession())
+
+download_url = 'https://github.com/<%= github.username %>/<%= github.repository %>/archive/v%s.tar.gz' % CONFIGURATION['version']
+
 for item in requirements:
     # we want to handle package names and also repo urls
     if getattr(item, 'url', None):  # older pip has url
@@ -54,14 +46,14 @@ for item in requirements:
     if item.req:
         requires.append(str(item.req))
 
-setup(name='%s' % (pkg_name),
-      version=pkg_version,
-      description=pkg_description,
+setup(name='%s' % (CONFIGURATION['name']),
+      version=CONFIGURATION['version'],
+      description=CONFIGURATION['description'],
       long_description=long_description,
       url='http://github.com/<%= github.username %>/<%= github.repository %>',
-      author=pkg_author,
-      author_email=pkg_email,
-      license=pkg_license,
+      author=CONFIGURATION['author'],
+      author_email=CONFIGURATION['email'],
+      license=license,
       packages=[os.path.join('src', p) for p in find_packages('src')],
       zip_safe=False,
       install_requires=requires,
@@ -82,11 +74,11 @@ setup(name='%s' % (pkg_name),
       test_suite='test.test_suite',
       keywords=['pygalle', 'pygalle.io', 'core', 'base', 'class', 'oop', 'microlibrary'],
       classifiers=[
-          'Development Status :: 3 - %s' % pkg_status,
+          'Development Status :: 3 - %s' % CONFIGURATION['status'],
           'Topic :: Software Development :: Libraries :: Application Frameworks',
-          'License :: OSI Approved :: %s License' % pkg_license,
+          'License :: OSI Approved :: %s License' % CONFIGURATION['license'],
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',
-      ],
+          ],
       download_url=download_url,
       )

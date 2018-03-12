@@ -125,6 +125,7 @@ class MicrolibraryGenerator extends Generator {
         const files = [
           './.tasks/config.yml',
           './.tasks/build.py',
+          './setup.cfg',
           '.coveralls.yml',
           './setup.py',
           './src/__init__.py',

@@ -4,5 +4,6 @@ include test-requirements.txt
 include LICENSE.txt
 include README.md
 include setup.py
+include pygalle_package.py
 include setup.cfg
 recursive-include data *
