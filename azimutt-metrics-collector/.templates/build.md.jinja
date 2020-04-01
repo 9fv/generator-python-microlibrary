@@ -1,0 +1,26 @@
+## <a name="build"> Build
+
+### <a name="generate-documentation"> Documentation
+
+#### <a name="generate-documentation-readme"> Generate README
+
+**Be careful!** [README](README.md) is generated using templates. 
+
+Please **only** modify documentation from related [templates](./.templates).
+
+Install packages Jinja2 and pynt :
+
+```
+pip install jinja2 pynt
+```
+
+
+Then you can generate documentation using the following command:
+
+```
+pynt -t .tasks/build.py docs
+```
+
+#### <a name="generate-documentation-api"> Generate API documentation
+
+The [API documentation](https://{{ package.name|replace('.','') }}.readthedocs.io) is automatically generated using [Read the Docs](https://readthedocs.org).

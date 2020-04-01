@@ -1,0 +1,13 @@
+package:
+  name: azimutt-metrics-collector
+github:
+  username: azimutt-io
+  repository: azimutt-metrics-collector
+workInProgress: true
+credits: []
+copyright:
+  year: 2020
+  author:
+    name: Azimutt Team
+    url: https://azimutt.io
+example:
