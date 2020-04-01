@@ -1,9 +1,0 @@
-{% if credits %}
-## <a name="credits"> Credits
-
-### Thanks to the developers of the very useful dependencies...
-
-{% for credit in credits %}* [{{ credit.package.name | safe }}]({{ credit.package.url | safe }}) by [{{ credit.author.name | safe }}]({{ credit.author.url| safe }}).
-{% endfor %}
-
-{% endif %}
